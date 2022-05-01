@@ -20,7 +20,7 @@ const Login = (props) => {
             password: password
         }
         //console.log(formData)
-        axios.post('http://dct-user-auth.herokuapp.com/users/login', formData)
+        axios.post('https://dct-user-auth.herokuapp.com/users/login', formData)
             .then((res) => {
                 const result = res.data
                 console.log(result)
