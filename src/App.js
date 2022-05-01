@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import NavBar from "./components/NavBar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = (props) => {
+    const [userLoggedIn, setUserLoggedIn] = useState(false)
+
+    const handleAuth = () => {
+        setUserLoggedIn(!userLoggedIn)
+    }
+
+    useEffect(() => {
+        if(localStorage.getItem('token')) {
+            handleAuth() 
+        }
+    }, [])
+  
+    const jobs = [
+        "Front-End Developer",
+        "Node.js Developer",
+        "MEAN Stack Developer",
+        "FULL Stack Developer",
+    ];
+
+    return (
+        <div className="">
+            <NavBar jobs={jobs} userLoggedIn={userLoggedIn} handleAuth={handleAuth}/>
+        </div>
+    );
+};
 
 export default App;
